@@ -10,11 +10,11 @@ class AdminUserSeeder extends Seeder
 {
     public function run(): void
     {
-        // የመጀመሪያው Admin User መፍጠር
+        // create an admin user
         User::create([
             'name' => 'Werkyantfu',
-            'email' => 'admin@smartsms.com',
-            'password' => Hash::make('password123'), // የመግቢያ ቃል
+            'email' => 'werkyantfutewachew@gmail.com',
+            'password' => Hash::make('werke@1993#'), // የመግቢያ ቃል
             'role' => 'admin',
         ]);
     }
