@@ -23,7 +23,13 @@ class StudentController extends Controller
             'gender' => 'required|in:M,F',
             'class_id' => 'required|exists:classes,id',
             'guardian_phone' => 'required|string',
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+        
+        if ($request->hasFile('photo')) {
+        $photoPath = $request->file('photo')->store('students', 'public');
+        $validated['photo'] = $photoPath;
+    }
 
         $validated['student_id_number'] = 'SMS-' . date('Y') . '-' . rand(1000, 9999);
         $validated['status'] = 'active';

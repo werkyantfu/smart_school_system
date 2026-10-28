@@ -8,10 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class SchoolClass extends Model
 {
      use HasFactory;
+     protected $table = 'classes';
+
 
     protected $fillable = [
         'name',
         'level',
+        'classes',
     ];
     // students relationship
     public function students()
