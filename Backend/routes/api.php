@@ -9,12 +9,10 @@ use App\Http\Controllers\Api\InvoiceController;
 use App\Http\Controllers\Api\PaymentController;
 use App\Http\Controllers\Api\MarkController;
 use App\Http\Controllers\Api\AttendanceController;
-
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-*/
+use App\Http\Controllers\Api\ReportController; 
+use App\Http\Controllers\Api\TeacherController;
+use App\Http\Controllers\Api\FinanceController;
+use App\Http\Controllers\Api\SettingController;
 
 // ==========================================
 // 1. PUBLIC ROUTES (No Login Required)
@@ -37,6 +35,18 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/students/{id}', [StudentController::class, 'update']);
     Route::delete('/students/{id}', [StudentController::class, 'destroy']);
 
+    // --- TEACHERS ---
+    Route::get('/teachers', [TeacherController::class, 'index']);
+    Route::post('/teachers', [TeacherController::class, 'store']);       
+    Route::put('/teachers/{id}', [TeacherController::class, 'update']);
+    Route::delete('/teachers/{id}', [TeacherController::class, 'destroy']);
+
+    // --- FINANCE ---
+    Route::get('/finance/summary', [FinanceController::class, 'getSummary']); 
+    Route::post('/finance/expenses', [FinanceController::class, 'addExpense']); 
+    Route::post('/finance/invoices', [FinanceController::class, 'createInvoice']); 
+    Route::post('/finance/payments', [FinanceController::class, 'recordPayment']); 
+    
     // --- CLASSES ---
     Route::get('/classes', [SchoolClassController::class, 'index']);
     Route::post('/classes', [SchoolClassController::class, 'store']);
@@ -76,4 +86,16 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/attendance/{id}', [AttendanceController::class, 'show']);
     Route::put('/attendance/{id}', [AttendanceController::class, 'update']);
     Route::delete('/attendance/{id}', [AttendanceController::class, 'destroy']);
+
+    // ==========================================
+    // ✅ REPORTS
+    // ==========================================
+    Route::get('/reports/{type}', [ReportController::class, 'generate']);
+
+    // ==========================================
+    // ✅ SETTINGS (NEW)
+    // ==========================================
+    Route::get('/settings', [SettingController::class, 'getSettings']);
+    Route::put('/settings', [SettingController::class, 'updateSettings']);
+
 });

@@ -2,27 +2,34 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\SchoolClass; 
+use App\Models\SchoolClass;
 
 class SchoolClassSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        // KG 1 - 3
-        SchoolClass::create(['name' => 'KG 1', 'level' => 0]);
-        SchoolClass::create(['name' => 'KG 2', 'level' => 0]);
-        SchoolClass::create(['name' => 'KG 3', 'level' => 0]);
-       
-        // Grade 1 - 12
-        for ($i = 1; $i <= 12; $i++) {
-            SchoolClass::create([
-                'name' => "Grade $i",
-                'level' => $i,]);
-    }
+        // ✅ Insert classes with the correct columns (name, section, room_number)
+        $classes = [
+            ['name' => 'KG 1', 'section' => 'A', 'room_number' => '101'],
+            ['name' => 'KG 2', 'section' => 'A', 'room_number' => '102'],
+            ['name' => 'KG 3', 'section' => 'A', 'room_number' => '103'],
+            ['name' => 'Grade 1', 'section' => 'A', 'room_number' => '201'],
+            ['name' => 'Grade 2', 'section' => 'A', 'room_number' => '202'],
+            ['name' => 'Grade 3', 'section' => 'A', 'room_number' => '203'],
+            ['name' => 'Grade 4', 'section' => 'A', 'room_number' => '204'],
+            ['name' => 'Grade 5', 'section' => 'A', 'room_number' => '205'],
+            ['name' => 'Grade 6', 'section' => 'A', 'room_number' => '301'],
+            ['name' => 'Grade 7', 'section' => 'A', 'room_number' => '302'],
+            ['name' => 'Grade 8', 'section' => 'A', 'room_number' => '303'],
+            ['name' => 'Grade 9', 'section' => 'A', 'room_number' => '401'],
+            ['name' => 'Grade 10', 'section' => 'A', 'room_number' => '402'],
+            ['name' => 'Grade 11', 'section' => 'A', 'room_number' => '501'],
+            ['name' => 'Grade 12', 'section' => 'A', 'room_number' => '502'],
+        ];
+
+        foreach ($classes as $class) {
+            SchoolClass::create($class);
+        }
     }
 }
